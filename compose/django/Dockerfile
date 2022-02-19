@@ -7,10 +7,11 @@ ENV TZ=Europe/Moscow
 WORKDIR /webapp
 # Копирует все файлы из нашего локального проекта в контейнер
 COPY ./src /webapp
+COPY ./compose/django /webapp
 # Запускает команду pip install для всех библиотек, перечисленных в requirements.txt
-RUN && pip install -r /requirements/main.txt --no-cache-dir \
-    && pip install -r /requirements/poetry.txt --no-cache-dir \
-    && pip install -r /requirements/test.txt --no-cache-dir
+RUN pip install -r ./requirements/main.txt --no-cache-dir \
+    && pip install -r ./requirements/poetry.txt --no-cache-dir \
+    && pip install -r ./requirements/test.txt --no-cache-dir
 
 
 RUN groupadd -r django \
